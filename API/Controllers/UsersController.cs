@@ -8,21 +8,21 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController (DataContext context) : ControllerBase
+    public class UsersController (DataContext context) : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<AppUsers>>> GetUsers()
         {
-            List<AppUser> users = await context.Users.ToListAsync();
+            List<AppUsers> users = await context.Users.ToListAsync();
             if(users.Count == 0) return NotFound("No users found");
             return Ok(users);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+        public async Task<ActionResult<AppUsers>> GetUser(int id)
         {
             Console.WriteLine($"Requested ID: {id}");
-            AppUser? user = await context.Users.FindAsync(id);
+            AppUsers? user = await context.Users.FindAsync(id);
             if(user == null) return NotFound("No user found");
             return Ok(user);
         }
