@@ -1,4 +1,6 @@
 using API.Data;
+using API.Interfaces;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 builder.Services.AddCors();
+
+builder.Services.AddScoped<ITokenServices, TokenService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
