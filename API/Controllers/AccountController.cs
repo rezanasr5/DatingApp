@@ -11,6 +11,22 @@ namespace API.Controllers;
 
 public class AccountController(DataContext context) : BaseApiController
 {
+    [HttpPost("login")]
+    public async Task<ActionResult<AppUsers>> Login(LoginDto loginDto)
+    {
+        AppUsers? appUsers = await context.Users.FirstOrDefaultAsync(x => 
+            x.UserName == loginDto.Username.ToLower());
+        if (appUsers == null)
+            return Unauthorized("Invalid username");
+        using var hmc = new HMACSHA512(appUsers.PasswordSalt);
+        byte[] computedHash = hmc.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
+        for (int i = 0; i < computedHash.Length; i++)
+        {
+            if (computedHash[i] != appUsers.PasswordHash[i])
+                return Unauthorized("Invalid password");
+        }
+        return appUsers;
+    }
     [HttpPost("register")]
     public async Task<ActionResult<AppUsers>> Register(RegisterDto registerDto)
     {
