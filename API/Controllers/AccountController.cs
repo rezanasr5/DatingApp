@@ -11,7 +11,7 @@ namespace API.Controllers;
 
 public class AccountController(DataContext context) : BaseApiController
 {
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<ActionResult<AppUsers>> Register(RegisterDto registerDto)
     {
         if (await UserExists(registerDto.Username)) 
