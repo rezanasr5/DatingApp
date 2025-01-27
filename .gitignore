@@ -485,3 +485,5 @@ $RECYCLE.BIN/
 .vscode/settings.json
 API/appsettings.json
 .vscode/launch.json
+API/datingSite.db-shm
+.gitignore
