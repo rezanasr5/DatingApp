@@ -15,15 +15,15 @@ export class NavComponent {
   model: any = {};
 
   login() {
-    this.accountServices.login(this.model).subscribe(
-      (response) => {
+    this.accountServices.login(this.model).subscribe({
+      next: (response) => {
         console.log(response);
         this.loggedIn = true;
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
       }
-    );
+    });
   }
   logout() {
     this.loggedIn = false;

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AccountService {
 
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   baseUrl = 'https://localhost:5001/api/';
 
   login(model: any) {
