@@ -1,4 +1,4 @@
-.dropdown-toggle, .dropdown-item {
+.dropdown-toggle, .dropdown-item, .nav-item {
   cursor: pointer;
 }
 .dropdown-item {
@@ -6,4 +6,9 @@
 }
 .dropdown-item:hover {
   background-color: #f1f1f1d8;
+}
+
+.btn-login:hover{
+  background-color: #f1f1f1d8;
+  color: brown;
 }

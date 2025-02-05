@@ -1,16 +1,23 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute , RouterOutlet } from '@angular/router';
 import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './_services/account.service';
-import { HomeComponent } from "./home/home.component";
+
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavComponent, HomeComponent],
+  imports: [NavComponent, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  constructor(private readonly titleService: Title, @Inject(ActivatedRoute) private readonly route: ActivatedRoute) {
+    this.route.data.subscribe((data) => {
+      this.titleService.setTitle(data['title'] || 'DatingApp');
+    });
+  }
   private readonly accountService = inject(AccountService);
   ngOnInit(): void {
     this.setCurrentUser();
@@ -24,5 +31,4 @@ export class AppComponent implements OnInit {
     const user = JSON.parse(userString);
     this.accountService.currentUser.set(user);
   }
-
 }
