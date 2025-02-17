@@ -9,6 +9,8 @@
 }
 
 .btn-login:hover{
-  background-color: #f1f1f1d8;
-  color: brown;
+  background-color: #f1f1f11f;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: rgb(255, 255, 255);
 }
