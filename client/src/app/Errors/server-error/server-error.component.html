@@ -1,0 +1,11 @@
+<h4>Internal Server Error</h4>
+
+@if (error) {
+  <div class="alert alert-danger mt-5">
+    <ul class="text-danger">
+      <li><h5>{{error.message}}</h5></li>
+    </ul>
+  </div>
+  <p class="font-weight-bold">This is not your problem </p>
+  <button class="btn btn-primary btn-lg" routerLink="/" routerLinkActive="router-link-active" >Send Error To Developers</button>
+}
