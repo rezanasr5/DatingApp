@@ -36,17 +36,18 @@ public class AccountController(DataContext context, ITokenServices tokenServices
     {
         if (await UserExists(registerDto.Username))
             return BadRequest("Username is taken");
-        using var hmc = new HMACSHA512();
-        AppUsers user = new()
-        {
-            UserName = registerDto.Username.ToLower(),
-            PasswordHash = hmc.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-            PasswordSalt = hmc.Key,
-        };
-        context.Users.Add(user);
-
-        await context.SaveChangesAsync();
-        return new UserDto { Username = user.UserName, Token = tokenServices.CreateToken(user) };
+        return Ok();
+        // using var hmc = new HMACSHA512();
+        // AppUsers user = new()
+        // {
+        //     UserName = registerDto.Username.ToLower(),
+        //     PasswordHash = hmc.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+        //     PasswordSalt = hmc.Key,
+        // };
+        // context.Users.Add(user);
+        //
+        // await context.SaveChangesAsync();
+        // return new UserDto { Username = user.UserName, Token = tokenServices.CreateToken(user) };
     }
 
     private async Task<bool> UserExists(string username)
