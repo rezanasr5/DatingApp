@@ -489,3 +489,5 @@ API/datingSite.db-shm
 .gitignore
 API/appsettings.Development.json
 API/appsettings.Development.json
+API/datingSite.db
+API/datingSite.db-wal
