@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Entities;
 
+[Table("Photos")]
 public class Photo
 {
     public int id { get; init; }
@@ -13,5 +15,14 @@ public class Photo
 
     [MaxLength(10)]
     public string? PublicId { get; set; }
-    
+
+    /// <summary>
+    /// Navigation property
+    /// </summary>
+    public int AppUserId { get; set; }
+
+    /// <summary>
+    /// Navigation property
+    /// </summary>
+    public AppUsers AppUsers { get; set; } = null!;
 }
