@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using API.Extensions;
 
 namespace API.Entities;
 
@@ -40,4 +41,9 @@ public class AppUsers
     public required string Country { get; init; }
 
     public List<Photo>? Photos { get; set; }
+
+    public int GetAge()
+    {
+        return DateOfBirth.CalculateAge();
+    }
 }
