@@ -40,10 +40,10 @@ public class AppUsers
     [MaxLength(50)]
     public required string Country { get; init; }
 
-    public List<Photo>? Photos { get; set; }
+    public List<Photo> Photos { get; set; } = [];
 
-    public int GetAge()
-    {
-        return DateOfBirth.CalculateAge();
-    }
+    // public int GetAge()
+    // {
+    //     return DateOfBirth.CalculateAge();
+    // }
 }

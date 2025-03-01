@@ -1,30 +1,28 @@
-using API.Data;
+using API.DTO;
 using API.Entities;
+using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class UsersController (DataContext context) : BaseApiController
+    [Authorize]
+    public class UsersController (IUserRepository userRepository) : BaseApiController
     {
-        [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUsers>>> GetUsers()
+        public async Task<ActionResult<List<MembersDto>>> GetUsers()
         {
-            List<AppUsers> users = await context.Users.ToListAsync();
-            if(users.Count == 0) return NotFound("No users found");
-            return Ok(users);
+            List<MembersDto> users = await userRepository.GetAllMembersAsync();
+            if(users.Count is 0) return NotFound("No users found");
+            return users;
         }
-        [Authorize]
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<AppUsers>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MembersDto>> GetUser(string username)
         {
-            Console.WriteLine($"Requested ID: {id}");
-            AppUsers? user = await context.Users.FindAsync(id);
+            MembersDto? user = await userRepository.GetMemberAsync(username);
             if(user == null) return NotFound("No user found");
-            return Ok(user);
+            return user;
         }
     }
 }
