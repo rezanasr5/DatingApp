@@ -1,0 +1,24 @@
+.img-thumbnail{
+    margin: 30px;
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    border-bottom: 4px solid #fbcdcf;
+}
+
+.card{
+    border: none;
+    border-bottom: 5px solid #ff100c;
+    border-right: 2px solid #d2d4d8 ;
+    border-radius: 5%;
+}
+
+.card-body{
+    margin: 0 30px;
+}
+
+.card-footer{
+    padding: 10px 15px;
+    background-color: #fff;
+    border-top: 1px solid #d2d4d8;
+}
