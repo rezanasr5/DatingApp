@@ -3,14 +3,22 @@
     width: 85%;
     height: 85%;
     border-radius: 50%;
-    border-bottom: 4px solid #fbcdcf;
+    border-bottom: 4px solid #7bffaa;
+}
+
+.img-thumbnail.dirty{
+    border-bottom: 4px solid #ff100c;
 }
 
 .card{
     border: none;
-    border-bottom: 5px solid #ff100c;
+    border-bottom: 5px solid #1cff0c;
     border-right: 2px solid #d2d4d8 ;
     border-radius: 5%;
+}
+
+.card.dirty{
+    border-bottom: 5px solid #ff100c;
 }
 
 .card-body{
@@ -23,3 +31,9 @@
     border-top: 1px solid #d2d4d8;
 }
 
+.alert-icon{
+    width: 40px;
+    height: auto;
+    text-align: center;
+    align-items: center;
+}
